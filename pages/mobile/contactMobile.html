@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Contact INKBUS Mobile to book Portland's purple bus tattoo studio for your event. Request quotes for weddings, parties, festivals, and private gatherings.">
   <title>Contact INKBUS Mobile - Book Portland's Purple Bus Tattoo Studio</title>
+
+    <!-- Standard screen height adjustor-->
+  <script>
+    // Fix mobile viewport height across all browsers
+    function setViewportHeight() {
+      // Get actual viewport height
+      const vh = window.innerHeight * 0.01;
+      // Set CSS custom property
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    // Set on load
+    setViewportHeight();
+
+    // Update on resize and orientation change
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
+  </script>
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../../assets/styles/reset.css">
@@ -34,7 +52,7 @@
           <a target="_blank" href="eventCalendar.html">
             <img
               class="mobile-contact-img"
-              src="https://res.cloudinary.com/diyrbemqw/image/upload/v1681081519/inkbus-tattoo-main/inkbus-tattoo-contact/ufoContact_uucy9z.webp"
+              src="../../assets/images/mobile-critical/mobileContact/ufoContact_uucy9z.webp"
               alt="A UFO abducting a dolphin from the ocean"
               width="400px"
               height="auto"

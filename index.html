@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="INKBUS Tattoo - Portland's premier mobile tattoo studio featuring our iconic purple bus and new Mothership location. Professional custom tattoos and event services.">
+  <meta name="description"
+    content="INKBUS Tattoo - Portland's premier mobile tattoo studio featuring our iconic purple bus and new Mothership location. Professional custom tattoos and event services.">
   <title>INKBUS Tattoo - Portland's Purple Bus Mobile Tattoo Studio</title>
-  
+
+  <!-- Crital CSS -->
   <style>
     .main-background {
       background: linear-gradient(to bottom, #020104, #6032c8);
       background-attachment: fixed;
-      min-height: 100dvh; /*dynamic view height: adjusts automatically to various obstacles on smart phone viewports*/
+      min-height: calc(var(--vh, 1vh) * 100);
+      /*dynamic view height: adjusts automatically to various obstacles on smart phone viewports*/
       display: flex;
       flex-direction: column;
     }
@@ -26,7 +30,7 @@
 
     #inkbus-main-header-image h1 img {
       border: none;
-      padding:.5rem
+      padding: .5rem
     }
 
     #inkbus-main-header-image p img {
@@ -45,13 +49,12 @@
     #inkbus-main-header-image::after {
       content: '';
       display: block;
-      height: 21px; /* 3 stripes × 7px each */
-      background: linear-gradient(
-        to bottom,
-        var(--lavender) 0px, var(--lavender) 7px,
-        var(--grape) 7px, var(--grape) 14px,
-        var(--lavender) 14px, var(--lavender) 21px
-      );
+      height: 21px;
+      /* 3 stripes × 7px each */
+      background: linear-gradient(to bottom,
+          var(--lavender) 0px, var(--lavender) 7px,
+          var(--grape) 7px, var(--grape) 14px,
+          var(--lavender) 14px, var(--lavender) 21px);
       width: 100%;
     }
 
@@ -60,8 +63,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 0; /*CRITICAL - allows flex item to shrink on difficult mobile viewports */
-      overflow: hidden; /*Prevents overflow */
+      min-height: 0;
+      /*CRITICAL - allows flex item to shrink on difficult mobile viewports */
+      overflow: hidden;
+      /*Prevents overflow */
     }
 
     /* Main Navigation Container */
@@ -70,18 +75,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: clamp(0.5rem, 2vh, 1.5rem);  
+      gap: clamp(0.5rem, 2vh, 1.5rem);
       margin: .5rem auto;
-      max-height: 100%; /* Keeps nav within main bounds */
+      max-height: 100%;
+      /* Keeps nav within main bounds */
     }
 
     /* Navigation buttons (images) */
     .main-nav-btn {
       width: 100%;
-      max-width: min(50vw, 400px); /* Never exceeds viewport width */
+      max-width: min(40vw, 600px);
+      /* Never exceeds viewport width */
       height: auto;
       transition: transform 0.3s ease-in-out, filter 0.3s ease;
-      border: var(--border-width) solid var(--grape); 
+      border: var(--border-width) solid var(--grape);
       border-radius: var(--border-radius);
     }
 
@@ -101,15 +108,13 @@
       left: 0;
       width: 100%;
       height: 21px;
-      background: linear-gradient(
-        to bottom,
-        var(--lavender) 0px,
-        var(--lavender) 7px,
-        var(--grape) 7px,
-        var(--grape) 14px,
-        var(--lavender) 14px,
-        var(--lavender) 21px
-      );
+      background: linear-gradient(to bottom,
+          var(--lavender) 0px,
+          var(--lavender) 7px,
+          var(--grape) 7px,
+          var(--grape) 14px,
+          var(--lavender) 14px,
+          var(--lavender) 21px);
     }
 
     footer {
@@ -125,8 +130,10 @@
       line-height: 1;
       position: sticky;
       bottom: 0;
-      position: relative; /* Creates positioning context for ::before */
-      padding-top: calc(1rem + 21px); /* Makes room for the 21px stripes */
+      position: relative;
+      /* Creates positioning context for ::before */
+      padding-top: calc(1rem + 21px);
+      /* Makes room for the 21px stripes */
     }
 
     .footer-quote {
@@ -141,44 +148,56 @@
       color: var(--magenta);
       font-weight: 700;
       font-style: italic;
-      white-space: nowrap; /* Prevents wrapping */
+      white-space: nowrap;
+      /* Prevents wrapping */
     }
 
     @media screen and (max-width: 376px) {
-  
+
       main nav {
         width: 100%;
-        max-width: 174px; /* Constrains on larger screens */
-        gap: 1rem; /* Space between the two images */
+        max-width: 174px;
+        /* Constrains on larger screens */
+        gap: 1rem;
+        /* Space between the two images */
         display: flex;
         flex-direction: column;
       }
-      
+
       main nav img {
         width: 100%;
         height: auto;
       }
-      
     }
 
     @media screen and (min-width: 576px) {
-  
+
       /* Navigation - Start showing side-by-side layout*/
       .inkbus-main-nav {
         flex-wrap: wrap;
         gap: 1.5rem;
-        max-width: 95%; /* Constrain width on tablets*/ 
+        max-width: 95%;
+        /* Constrain width on tablets*/
       }
 
       #inkbus-main-header-image p img {
         width: auto;
       }
-      
+
       .main-nav-btn {
         max-width: 350px;
-        height: auto; /* Let image determine height */
-        max-height: 35vh; /* Cap maximum but don't force */
-        object-fit: contain; /* Preserve aspect ratio */
+        height: auto;
+        /* Let image determine height */
+        max-height: 35vh;
+        /* Cap maximum but don't force */
+        object-fit: contain;
+        /* Preserve aspect ratio */
+      }
+
+      /* Spinning button: no hover effect during animation */
+      .main-nav-btn.spin-on-bump:hover {
+        transform: none;
+        /* Animation controls transform */
       }
 
       footer {
@@ -188,89 +207,84 @@
         gap: 1.25rem;
       }
 
-        .footer-quote {
-          flex-direction: row;
-          flex: 1;
-          align-items: center;
-          gap: 0;
-        }
-        
-        .footer-quote p {
-          font-size: clamp(1.25rem, 0.5rem + 1.3vw, 2.5rem);
-          line-height: 1;
-          margin: 0;
-          padding: 0;
-          flex: 1;
-          display: flex;
-          align-items: center;
-        }
-        
-        .footer-quote :nth-of-type(1) {
-          justify-content: flex-end;
-        }
-        
-        .footer-quote :nth-of-type(2) {
-          justify-content: flex-start;
-          /* Kerning grows with the massive font */
-          padding-left: clamp(0.375rem, 0.1rem + 0.5vw, 1rem);
-        }
+      .footer-quote {
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        gap: 0;
+      }
+
+      .footer-quote p {
+        font-size: clamp(1.25rem, 0.5rem + 1.3vw, 2.5rem);
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-quote :nth-of-type(1) {
+        justify-content: flex-end;
+      }
+
+      .footer-quote :nth-of-type(2) {
+        justify-content: flex-start;
+        /* Kerning grows with the massive font */
+        padding-left: clamp(0.375rem, 0.1rem + 0.5vw, 1rem);
+      }
     }
 
     @media screen and (min-width: 768px) {
-  
+
       /* Navigation */
       .inkbus-main-nav {
         flex-direction: row;
         gap: 2rem;
         flex-wrap: nowrap;
       }
-      
+
       .main-nav-btn {
         max-width: 380px;
-        height: auto; /* Let image determine height */
-        max-height: 40vh; /* Cap maximum */
+        height: auto;
+        /* Let image determine height */
+        max-height: 40vh;
+        /* Cap maximum */
         object-fit: contain;
       }
 
       .main-nav-btn.full-size {
         display: block;
       }
-      
+
       .main-nav-btn.mini-size {
         display: none;
       }
     }
 
     @media screen and (min-width: 992px) {
-        
+
       /* Navigation */
       .inkbus-main-nav {
         gap: 2.5rem;
         max-width: 88%;
       }
-      
+
       /* Switch to full-size images, hide mini */
 
       .main-nav-btn {
         max-width: 400px;
         width: auto;
       }
-      
-      /* Desktop hover effect: scale instead of brightness */
-      .main-nav-btn:hover,
-      .main-nav-btn:focus {
-        transform: scale(1.1);
-        filter: none;
-      }
     }
 
     @media screen and (min-width: 1200px) {
-  
+
       /* More spacing on large screens*/
       .inkbus-main-nav {
         gap: 3rem;
       }
-      
+
       .main-nav-btn {
         max-width: 450px;
       }
@@ -278,105 +292,125 @@
 
     @media screen and (min-width: 1750px) {
       #inkbus-main-header-image {
-      background-position-y: bottom;
+        background-position-y: bottom;
       }
     }
   </style>
+
+  <!-- Standard screen height adjustor-->
+  <script>
+    // Fix mobile viewport height across all browsers
+    function setViewportHeight() {
+      // Get actual viewport height
+      const vh = window.innerHeight * 0.01;
+      // Set CSS custom property
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    // Set on load
+    setViewportHeight();
+
+    // Update on resize and orientation change
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
+  </script>
+
+  <!-- PRELOAD animation CSS with high priority -->
+  <link rel="preload" as="style" href="assets/styles/animation.css">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/styles/reset.css">
   <link rel="stylesheet" href="assets/styles/main.css">
-  
+  <link rel="stylesheet" href="assets/styles/animation.css">
+
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
   <link rel="manifest" href="assets/images/favicons/site.webmanifest">
-  
+
   <!-- Theme colors -->
-  <meta name="msapplication-TileColor" content="#da532c">
+  <!-- Primary theme color for Chromium-based browsers (Chrome, Edge, Android WebView) -->
   <meta name="theme-color" content="#8945f6">
+
+  <!-- Use media queries for light/dark variants (where supported) -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#dcbeff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#8945f6">
+
+  <!-- iOS status bar -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Windows tile color -->
+  <meta name="msapplication-TileColor" content="#cc8af8">
+
+  <!-- Small runtime sync: keep the primary meta in sync with prefers-color-scheme -->
+  <script>
+    (function() {
+      try {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) return;
+        const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        meta.setAttribute('content', dark ? '#8945f6' : '#dcbeff');
+      } catch (e) { /* silent */ }
+    })();
+  </script>
+
 </head>
-  
-  <body class="main-background">
-    
-    <!-- Header with background image -->
-    <header id="inkbus-main-header-image" role="banner">
-      <h1 id="landing-display-font">
-        <img src="../assets/fonts/INKBUS-Title.png" alt="INKBUS Decrotive Title-Highbinder">
-      </h1>
-      <p id="landing-subtitle">
-        <img src="../assets/fonts/TATTOO-Subtitle.png" alt="TATTOO Decrotive Subtitle-Lulo One">
-      </p>
-    </header>
 
-    <!-- Main navigation -->
-    <main id="landing-main">
-      <nav class="inkbus-main-nav" role="navigation" aria-label="Main navigation">
-        <a href="pages/mobile/mobile.html" aria-label="Visit INKBUS Mobile tattoo studio">
-          <img
-            class="main-nav-btn full-size"
-            src="../assets/images/HomePageMobileButton800x.webp"
-            alt="INKBUS Mobile - Markoon relaxing in front of the original INKBUS in India"
-            loading="lazy"
-            width="400"
-            height="400"
-          />
-          <img
-            class="main-nav-btn mini-size"
-            src="../assets/images/HomePageMobileButton185x.webp"
-            alt="INKBUS Mobile - Markoon relaxing in front of the original INKBUS in India"
-            loading="lazy"
-            width="200"
-            height="200"
-          />
-        </a>
-        <a href="pages/mothership/mothership.html" aria-label="Visit INKBUS Mothership permanent studio">
-          <img
-            class="main-nav-btn full-size spin-on-bump"
-            src="../assets/images/HomeMomShipButton800x.webp"
-            alt="INKBUS Mothership - Our permanent tattoo studio location"
-            loading="lazy"
-            width="400"
-            height="400"
-          />
-          <img
-            class="main-nav-btn mini-size spin-on-bump"
-            src="../assets/images/HomeMomShipButton185x.webp"
-            alt="INKBUS Mothership - Our permanent tattoo studio location"
-            loading="lazy"
-            width="200"
-            height="200"
-          />
-        </a>
-      </nav>
-    </main>
+<body class="main-background">
 
-    <!-- Footer -->
-    <footer class="footer-quote-variant" role="contentinfo">
-      
-      <div class="markoon-container">
-        <img 
-          class="markoon-runner" 
-          src="../assets/images/TransparentBigDaddyMarkoon-R.png" 
-          alt="" 
-          aria-hidden="true"
-          loading="lazy"
-        />
-      </div>
-      
-      <section class="footer-left-side">
-        <p>&copy; INKBUS TATTOO 2025</p>
-        <p>Portland, OR</p>
-      </section>
-      <section class="footer-quote">
-        <p>Make A Lasting</p>
-        <p>Impression!</p>
-      </section>
-      <section class="footer-right-side">
-        <a id="about-page-link" href="pages/main/aboutInkBus.html">ABOUT INKBUS</a>
-        <a href="mailto:info@inkbustattoo.com" aria-label="Email INKBUS Tattoo">info@inkbustattoo.com</a>
-      </section>
-    </footer>
-    
-  </body>
+  <!-- Header with background image -->
+  <header id="inkbus-main-header-image" role="banner">
+    <h1 id="landing-display-font">
+      <img src="../assets/fonts/INKBUS-Title.png" alt="INKBUS Decretive Title-Highbinder">
+    </h1>
+    <p id="landing-subtitle">
+      <img src="../assets/fonts/TATTOO-Subtitle.png" alt="TATTOO Decretive Subtitle-Lulo One">
+    </p>
+  </header>
+
+  <!-- Main navigation -->
+  <main id="landing-main">
+    <nav class="inkbus-main-nav" role="navigation" aria-label="Main navigation">
+      <a href="pages/mobile/mobile.html" aria-label="Visit INKBUS Mobile tattoo studio">
+        <img class="main-nav-btn full-size" src="../assets/images/HomePageMobileButton800x.webp"
+          alt="INKBUS Mobile - Markoon relaxing in front of the original INKBUS in India" loading="lazy" width="400"
+          height="400" />
+        <img class="main-nav-btn mini-size" src="../assets/images/HomePageMobileButton185x.webp"
+          alt="INKBUS Mobile - Markoon relaxing in front of the original INKBUS in India" loading="lazy" width="200"
+          height="200" />
+      </a>
+      <a href="pages/mothership/mothership.html" aria-label="Visit INKBUS Mothership permanent studio">
+        <img class="main-nav-btn full-size spin-on-bump" src="../assets/images/HomeMomShipButton800x.webp"
+          alt="INKBUS Mothership - Our permanent tattoo studio location" loading="lazy" width="400" height="400" />
+        <img class="main-nav-btn mini-size spin-on-bump" src="../assets/images/HomeMomShipButton185x.webp"
+          alt="INKBUS Mothership - Our permanent tattoo studio location" loading="lazy" width="200" height="200" />
+      </a>
+    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-quote-variant" role="contentinfo">
+
+    <div class="markoon-container">
+      <img class="markoon-runner" src="../assets/images/TransparentBigDaddyMarkoon-R.png" alt="" aria-hidden="true"
+        loading="lazy" />
+    </div>
+
+    <section class="footer-left-side">
+      <p>&copy; INKBUS TATTOO 2025</p>
+      <p>Portland, OR</p>
+    </section>
+    <section class="footer-quote">
+      <p>Make A Lasting</p>
+      <p>Impression!</p>
+    </section>
+    <section class="footer-right-side">
+      <a id="about-page-link" href="pages/main/aboutInkBus.html">ABOUT INKBUS</a>
+      <a href="mailto:info@inkbustattoo.com" aria-label="Email INKBUS Tattoo">info@inkbustattoo.com</a>
+    </section>
+  </footer>
+
+</body>
+
 </html>
